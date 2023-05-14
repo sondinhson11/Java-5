@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class GiangVienController {
-    GiangVienService giangVienService = new GiangVienServiceImpl();
+    private GiangVienService giangVienService = new GiangVienServiceImpl();
 
     @GetMapping("/giang-vien/hien-thi")
     public String hienThi(Model model) {
