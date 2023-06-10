@@ -222,9 +222,9 @@ INSERT INTO [dbo].[ChiTietSP]
            ,[GiaNhap]
            ,[GiaBan])
      VALUES
-           ('c221e9cf-930f-4438-bcea-ecbc6fca3f63'
+           ('A3B45654-F4DC-416D-B087-333F00A200D7'
            ,'a92eb68b-e0d7-47fb-8cba-138c40ec77bf'
-           ,'fff51489-53f8-4c81-aa28-39a10c54f093'
+           ,'A066B7EA-CE27-4D34-87DB-8B37C4B2E966'
            ,'d57c2e8e-56eb-4e87-bf5e-cfa7e519ad5b'
            ,1
            ,'Không Có Đâu'
