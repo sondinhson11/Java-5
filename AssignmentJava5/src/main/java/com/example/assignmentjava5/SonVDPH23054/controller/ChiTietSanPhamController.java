@@ -1,6 +1,7 @@
 package com.example.assignmentjava5.SonVDPH23054.controller;
 
 import com.example.assignmentjava5.SonVDPH23054.entity.ChiTietSanPham;
+import com.example.assignmentjava5.SonVDPH23054.entity.ChucVu;
 import com.example.assignmentjava5.SonVDPH23054.service.ChiTietSanPhamService;
 import com.example.assignmentjava5.SonVDPH23054.service.DongSPService;
 import com.example.assignmentjava5.SonVDPH23054.service.MauSacService;
@@ -36,6 +37,7 @@ public class ChiTietSanPhamController {
     private DongSPService dongSPService;
     @GetMapping("/chi-tiet-san-pham/hien-thi")
     public String hienthi(Model model, @RequestParam(defaultValue = "0",name = "page")Integer integer){
+
         model.addAttribute("chiTietSP",new ChiTietSanPham());
         Pageable pageable = PageRequest.of(integer,3);
         Page<ChiTietSanPham> chiTietsPPage = chiTietSanPhamService.phanTrang(pageable);
@@ -47,7 +49,18 @@ public class ChiTietSanPhamController {
         return "/chitietsanpham/hien-thi-chi-tiet-san-pham";
     }
     @PostMapping("/chi-tiet-san-pham/add")
-    public String add(@Valid @ModelAttribute("chiTietSP") ChiTietSanPham chiTietSanPham, BindingResult result, Model model){
+    public String add(@Valid @ModelAttribute("chiTietSP") ChiTietSanPham chiTietSanPham, BindingResult result, Model model, @RequestParam(defaultValue = "0",name = "page")Integer integer){
+
+        if(result.hasErrors()){
+            Pageable pageable = PageRequest.of(integer,3);
+            Page<ChiTietSanPham> chiTietsPPage = chiTietSanPhamService.phanTrang(pageable);
+            model.addAttribute("listCTSP",chiTietsPPage);
+            model.addAttribute("listSP",sanPhamService.getAll());
+            model.addAttribute("listNSX",nsxService.getAll());
+            model.addAttribute("listMS",mauSacService.getAll());
+            model.addAttribute("listDSP",dongSPService.getAll());
+            return "/chitietsanpham/hien-thi-chi-tiet-san-pham";
+        }
         model.addAttribute("chiTietSP", chiTietSanPham);
         model.addAttribute("listSP",sanPhamService.getAll());
         model.addAttribute("listNSX",nsxService.getAll());
@@ -60,7 +73,7 @@ public class ChiTietSanPhamController {
     @GetMapping("/chi-tiet-san-pham/remove/{id}")
     public String remove(@PathVariable("id")UUID id){
         chiTietSanPhamService.remove(id);
-        return "redirect:/chi-tietSP/hien-thi";
+        return "redirect:/chi-tiet-san-pham/hien-thi";
     }
     @GetMapping("/chi-tiet-san-pham/detail/{id}")
     public String deatil(@PathVariable("id")UUID id,Model model){

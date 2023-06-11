@@ -52,14 +52,19 @@
             </form:select> <br>
             Năm BH:
             <form:input class="form-control" path="namBH" type="number"/> <br>
+            <form:errors path="namBH" cssStyle="color: red"/><br>
             Mô Tả:
             <form:input class="form-control" path="moTa"/> <br>
+            <form:errors path="moTa" cssStyle="color: red"/><br>
             Số Lượng Tồn:
             <form:input class="form-control" path="soLuongTon" type="number"/> <br>
+            <form:errors path="soLuongTon" cssStyle="color: red"/><br>
             Giá Nhập:
             <form:input class="form-control" path="giaNhap" type="text"/> <br>
+            <form:errors path="giaNhap" cssStyle="color: red"/><br>
             Giá Bán:
             <form:input class="form-control" path="giaBan" type="text"/> <br>
+            <form:errors path="giaBan" cssStyle="color: red"/><br>
             <form:button class="btn btn-success" type="submit">Thêm</form:button>
 
         </form:form>
@@ -111,7 +116,7 @@
         <nav>
             <ul>
                 <c:forEach begin="0" end="${listCTSP.totalPages -1}" varStatus="loop">
-                    <a href="/chi-tietSP/hien-thi?page=${loop.begin + loop.count -1}">
+                    <a href="/chi-tiet-san-pham/hien-thi?page=${loop.begin + loop.count -1}">
                             ${loop.begin + loop.count}
                     </a>
                 </c:forEach>
